@@ -3,4 +3,6 @@ from django.shortcuts import render
 # ********* VIEWS *********
 
 def home(request):
-    return render(request,'index.html')
+    title = "iShare - Welcome !"
+    
+    return render(request,'index.html',{"title":title})
