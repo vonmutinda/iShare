@@ -19,7 +19,7 @@ class Category(models.Model):
 class Image(models.Model):
     name = models.CharField(max_length = 30)
     description = models.TextField()
-    image = models.ImageField(upload_to = 'images/')
+    image_url = models.ImageField(upload_to = 'images/')
 
     category = models.ForeignKey(Category)
     location = models.ForeignKey(Location)
@@ -31,7 +31,11 @@ class Image(models.Model):
     def delete_image(self):
         self.delete()
 
-    
+    @classmethod
+    def fetch_all(cls):
+        images = cls.objects.all()
+        return images
+
     @classmethod
     def search_image(cls,search_term):
         images = cls.objects.filter(description__icontains = search_term)
