@@ -6,9 +6,9 @@ from . import views
 
 
 urlpatterns = [
-    url('^$',views.home, name= 'index'),
-    url(r'^location/{}/',views.location,name = 'Location'),
-    url(r'^category/(\w{4})/$',views.category,name = 'Category'),
+    url(r'^$',views.home, name= 'index'),
+    url(r'^location/(\w{2,})/$',views.location,name = 'location'),
+    url(r'^category/(\w{2,})/$',views.category,name = 'category'),
     url(r'^search/', views.search_images, name='search_images'),
 ]
 

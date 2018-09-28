@@ -7,36 +7,33 @@
 
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
+        {% if locations %}
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
           aria-expanded="false">Location</a>
         <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);">
-          {% if locations %}
-            {% for location in locations %}
-              <a class="dropdown-item" href="location/{{location.name}}">{{ location.name }}</a>
-            {% endfor %}
-          {% else %}
-            <p class="dropdown-item" > nothing for now </p>
-          {% endif %}
+          {% for location in locations %}
+          <a class="dropdown-item" href="location/{{location.name}}">{{ location.name }}</a>
+          {% endfor %}
         </div>
       </li>
+      {% endif %}
 
+      {% if categories %}
       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Category</a>
-          <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);">
-              {% if categories %}
-                {% for category in categories %}
-                  <a class="dropdown-item" href="category/{{category.name}}">{{ category.name }}</a>
-                {% endfor %}
-              {% else %}
-                <p class="dropdown-item" > nothing for now </p>
-              {% endif %}
-          </div>
-        </li>
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+          aria-expanded="false">Category</a>
+        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);">
+          {% for category in categories %}
+          <a class="dropdown-item" href="category/{{category.name}}">{{ category.name }}</a>
+          {% endfor %}
+        </div>
+      </li>
+      {% endif %}
     </ul>
 
-    <form role="search" class="form-inline my-2 my-lg-0"  >
-      <input class="form-control mr-sm-2" type="text" name = 'images' placeholder="search iShare">
+    <form action="{% url 'search_images' %}" role="search" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" name='images' placeholder="search iShare">
       <button style="color:black;background:white" type="submit" class="btn btn-primary">Search</button>
     </form>
   </div>

@@ -1,7 +1,6 @@
 from django.db import models
 
 # Create your models here.
-
 class Location(models.Model):
     name = models.CharField(max_length = 30)
 
@@ -28,7 +27,7 @@ class Category(models.Model):
 class Image(models.Model):
     name = models.CharField(max_length = 30)
     description = models.TextField()
-    image = models.ImageField(upload_to = 'images/')
+    image_url = models.ImageField(upload_to = 'images/')
 
     category = models.ForeignKey(Category)
     location = models.ForeignKey(Location)
@@ -57,12 +56,12 @@ class Image(models.Model):
     
     @classmethod
     def get_by_category(cls , cat):
-        images = cls.objects.filter(category = cat)
+        images = cls.objects.filter(category__name__startswith = cat)
         return images
 
     @classmethod
     def get_by_location(cls , location):
-        images = cls.objects.filter(location = location)
+        images = cls.objects.filter(location__name__startswith= location)
         return images
     
     @classmethod

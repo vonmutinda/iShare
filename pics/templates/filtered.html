@@ -10,7 +10,7 @@
         {% for image in images %}
         <div class="card text-white bg-primary mb-3 col-md-3 ">
             <div class="card-img">
-                <img src="{{ image.image.url }}" alt="{{ image.name }}" width="100%" height="auto" >
+                <img src="{{ image.image_url.url }}" alt="{{ image.name }}" width="100%" height="auto" >
             </div>
         </div>
         {% endfor %}
