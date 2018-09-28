@@ -27,11 +27,17 @@ class Image(models.Model):
     name = models.CharField(max_length = 30)
     description = models.TextField()
     user = models.ForeignKey(Mutinda)
-    image = models.ImageField(upload_to = 'articles/')
+    image = models.ImageField(upload_to = 'pics')
 
+    # Save image to db
+    def save_image(self):
+        self.save()
+        
+    # Delete an image from the db
+    def delete_image(self):
+        self.delete()
 
-
-
+    
     @classmethod
     def search_by_title(cls,search_term):
         articles = cls.objects.filter(title__icontains = search_term)
