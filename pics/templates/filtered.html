@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container-fluid">
+    {% if status %}
+        <h2> {{ status }} </h2>
+        <hr>
+    {% endif %}
     <div class="row">
         {% if images %}
         {% for image in images %}
@@ -12,7 +16,7 @@
         {% endfor %}
 
         {% else %}
-        <h2> von MUTINDA hasn't uploaded images yet </h2>
+        <h2> it's lonely here ! no images found .  </h2>
         {% endif %}
     </div>
 </div>

@@ -7,6 +7,9 @@ from . import views
 
 urlpatterns = [
     url('^$',views.home, name= 'index'),
+    url(r'^location/{}/',views.location,name = 'Location'),
+    url(r'^category/(\w{4})/$',views.category,name = 'Category'),
+    url(r'^search/', views.search_images, name='search_images'),
 ]
 
 if settings.DEBUG:

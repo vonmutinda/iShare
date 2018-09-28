@@ -8,6 +8,10 @@ class Location(models.Model):
     def __str__(self):
         return self.name
 
+    @classmethod
+    def fetch_locations(cls):
+        locations = cls.objects.all()
+        return locations
 
 class Category(models.Model):
     name = models.CharField(max_length = 30)
@@ -15,11 +19,16 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    @classmethod
+    def fetch_categories(cls):
+        cats = cls.objects.all()
+        return cats
+
 
 class Image(models.Model):
     name = models.CharField(max_length = 30)
     description = models.TextField()
-    image_url = models.ImageField(upload_to = 'images/')
+    image = models.ImageField(upload_to = 'images/')
 
     category = models.ForeignKey(Category)
     location = models.ForeignKey(Location)

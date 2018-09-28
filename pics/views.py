@@ -1,10 +1,29 @@
 from django.shortcuts import render
-from .models import Image
+from .models import Image ,Location , Category
 
 # ********* VIEWS *********
 
 def home(request):
     title = "iShare - Welcome !"
     images = Image.fetch_all()
-    return render(request,'index.html',{ "title":title , "images":images , })
+    locations = Location.fetch_locations()
+    categories = Category.fetch_categories() 
+    return render(request,'index.html',{ "title":title , "images":images ,"locations":locations ,"categories":categories })
 
+def location(request,location):
+    images = Image.get_by_location(location)
+    return render(request,'filtered.html', { "images":images , })
+
+
+def category(request,category):
+    images = Image.get_by_category(str(category))
+    return render(request,'filtered.html', { "images":images , })
+
+def search_images(request , search_term):
+    if request.GET and request.GET['images']:
+        images = Image.search_image(search_term)
+        status = f"Displaying images related to {search_term}"
+        return render(request , 'filtered.html',  {"status":status , "images":images })
+    else:
+        status = "You haven't queried anything yet !"
+        return render(request, "filtered.html",{"status":status})
