@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Mutinda , Image
-
+from .models import Image ,Location , Category
 
 
 # Register your models here.
-admin.site.register(Mutinda)
+admin.site.register(Location)
 admin.site.register(Image)
+admin.site.register(Category)

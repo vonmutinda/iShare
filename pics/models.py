@@ -1,44 +1,59 @@
 from django.db import models
 
 # Create your models here.
-class Mutinda(models.Model):
+
+class Location(models.Model):
     name = models.CharField(max_length = 30)
-    email = models.EmailField()
-    phone_number = models.CharField(max_length = 15 , blank = True)
 
     def __str__(self):
         return self.name
 
 
-    '''
-    Method for saving a new editor to the database
-    '''
-    def save_mutinda(self):
-        self.save()
-    
+class Category(models.Model):
+    name = models.CharField(max_length = 30)
 
-    '''
-    Class method for deleting an editor
-    '''
-    def delete_mutinda(self):
-        self.delete()
+    def __str__(self):
+        return self.name
+
 
 class Image(models.Model):
     name = models.CharField(max_length = 30)
     description = models.TextField()
-    user = models.ForeignKey(Mutinda)
     image = models.ImageField(upload_to = 'pics')
 
-    # Save image to db
+    category = models.ForeignKey(Category)
+    location = models.ForeignKey(Location)
+
+
     def save_image(self):
         self.save()
         
-    # Delete an image from the db
     def delete_image(self):
         self.delete()
 
     
     @classmethod
-    def search_by_title(cls,search_term):
-        articles = cls.objects.filter(title__icontains = search_term)
-        return articles
+    def search_image(cls,search_term):
+        images = cls.objects.filter(description__icontains = search_term)
+        return images
+    
+    @classmethod
+    def  get_image(cls,id):
+        image = cls.objects.filter(id=id)
+        return image
+    
+    @classmethod
+    def get_by_category(cls , cat):
+        images = cls.objects.filter(category = cat)
+        return images
+
+    @classmethod
+    def get_by_location(cls , location):
+        images = cls.objects.filter(location = location)
+        return images
+    
+    @classmethod
+    def update_image(cls , id , description):
+        image = cls.objects.filter(id = id).update(description = description)
+        return image
+
