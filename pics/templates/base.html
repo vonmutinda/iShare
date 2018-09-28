@@ -4,6 +4,7 @@
 <html>
 
 <head>
+
     {% if title %}
     <title> {{ title }} </title>
     {% else %}
@@ -15,6 +16,12 @@
     {% block styles %}
         <link rel="stylesheet" href="{% static 'css/bootswatch.css' %}">
         <link href="https://fonts.googleapis.com/css?family=Charmonman|Pangolin" rel="stylesheet">
+        <style>
+                body{
+                    font-family: 'Pangolin', cursive;
+                    font-size: 18px;
+                }
+            </style>
     {% endblock %}
 
 </head>
