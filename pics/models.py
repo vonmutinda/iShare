@@ -27,7 +27,7 @@ class Category(models.Model):
 class Image(models.Model):
     name = models.CharField(max_length = 30)
     description = models.TextField()
-    image_url = models.ImageField(upload_to = 'images/')
+    image_url = models.ImageField(upload_to = 'images/' ,blank = True)
 
     category = models.ForeignKey(Category)
     location = models.ForeignKey(Location)
@@ -65,7 +65,7 @@ class Image(models.Model):
         return images
     
     @classmethod
-    def update_image(cls , id , location , category):
-        image = cls.objects.filter(id = id).update(location = location,category = category)
+    def update_image(cls , name , location , category):
+        image = cls.objects.filter(name = name).update(location = location,category = category)
         return image
 

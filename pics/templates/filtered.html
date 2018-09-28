@@ -2,21 +2,43 @@
 {% block content %}
 <div class="container-fluid">
     {% if status %}
-        <h2> {{ status }} </h2>
-        <hr>
+    <h2> {{ status }} </h2>
+    <hr>
     {% endif %}
     <div class="row">
         {% if images %}
         {% for image in images %}
-        <div class="card text-white bg-primary mb-3 col-md-3 ">
+        <div class="col-md-3" data-toggle="modal" data-target="#{{image.id}}">
             <div class="card-img">
-                <img src="{{ image.image_url.url }}" alt="{{ image.name }}" width="100%" height="auto" >
+                <img src="{{ image.image_url.url }}" alt="{{ image.name }}" width="100%" height="auto">
+            </div>
+        </div>
+
+        <div class="modal" id="{{ image.id }}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="{{ image.image_url.url }}" alt="{{ image.name }}" width="100%" height="auto">
+                    </div>
+                    <div class="modal-body">
+                        <hr>
+                        <p class=""> <strong>Name :</strong> {{ image.name }} </p>
+                        <p style="font-family: 'Charmonman', cursive;"> <strong> Description :</strong> {{image.description }} </p>
+                    </div>
+                    <div class="modal-footer">
+                        <input id="link" type="text" class="form-control" value="https://localhost{{image.image_url.url}}"
+                            placeholder="https://localhost{{image.image_url.url}}">
+
+                        <button type="button" class="btn btn-primary" onclick="copyUrl()">copy link <i class="fa fa-copy"></i></button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"> <i class="fa fa-close"></i> </button>
+                    </div>
+                </div>
             </div>
         </div>
         {% endfor %}
 
         {% else %}
-        <h2> it's lonely here ! no images found .  </h2>
+        <h2> it's lonely here ! no images found . </h2>
         {% endif %}
     </div>
 </div>

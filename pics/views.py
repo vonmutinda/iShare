@@ -13,19 +13,21 @@ def home(request):
 def location(request,location):
     print(location)
     images = Image.get_by_location(location)
-    return render(request,'filtered.html', { "images":images , })
+    title = location
+    return render(request,'filtered.html', { "images":images , "title":title })
 
 
 def category(request,category):
     images = Image.get_by_category(category)
-    return render(request,'filtered.html', { "images":images , })
+    title = category
+    return render(request,'filtered.html', { "images":images ,"title":title})
 
 def search_images(request):
     if 'images' in request.GET and request.GET['images']:
         search_term = request.GET.get("images")
         images = Image.search_image(search_term)
         status = f"Displaying images related to {search_term}"
-        return render(request , 'filtered.html',  {"status":status , "images":images })
+        return render(request , 'filtered.html',  {"status":status , "images":images ,"title":search_term })
     else:
         status = "You haven't queried anything yet !"
         return render(request, "filtered.html",{"status":status})
