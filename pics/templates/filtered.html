@@ -5,6 +5,20 @@
     <h2> {{ status }} </h2>
     <hr>
     {% endif %}
+
+    {% if breadcrumb %}
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            {% if breadcrumb == "Category" %}
+                <li class="breadcrumb-item">Category</li>
+                <li class="breadcrumb-item active"> {{ title }} </li>
+            {% elif breadcrumb == "Location" %}
+                <li class="breadcrumb-item">Location</li>
+                <li class="breadcrumb-item active"> {{ title }} </li>
+            {% endif %}
+        </ol>
+    {% endif %}
+    
     <div class="row">
         {% if images %}
         {% for image in images %}

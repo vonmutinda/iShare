@@ -14,13 +14,15 @@ def location(request,location):
     print(location)
     images = Image.get_by_location(location)
     title = location
-    return render(request,'filtered.html', { "images":images , "title":title })
+    breadcrumb = "Location"
+    return render(request,'filtered.html', { "images":images , "title":title , "breadcrumb":breadcrumb, })
 
 
 def category(request,category):
     images = Image.get_by_category(category)
     title = category
-    return render(request,'filtered.html', { "images":images ,"title":title})
+    breadcrumb = "Category"
+    return render(request,'filtered.html', { "images":images ,"title":title , "breadcrumb": breadcrumb, })
 
 def search_images(request):
     if 'images' in request.GET and request.GET['images']:
