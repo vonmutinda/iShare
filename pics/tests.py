@@ -6,6 +6,14 @@ Image tests using TestCase module
 '''
 class ImageTestClass(TestCase):
 
+    @classmethod
+    def setUpClass(cls):
+        print("setUp Class")
+
+    @classmethod
+    def tearDownClass(cls):
+        print("tearDown Class")
+
     def setUp(self):
         self.location = Location(name = 'Shengzhen')
         self.location.save()
@@ -27,23 +35,22 @@ class ImageTestClass(TestCase):
 
 
     def test_can_save_image(self):
-        self.image.save_image()
+        self.setUpClass()
         images = Image.fetch_all()
         self.assertTrue(len(images)>0)
 
-
     def test_can_search(self):
-        self.image.save_image()
+        self.setUpClass()
         image = Image.search_image('coffee')
         self.assertTrue(len(image)>0)
     
     def test_can_fetch_all_images(self):
-        self.image.save_image()
+        self.setUpClass()
         images = Image.fetch_all()
         self.assertTrue(len(images)==1)
 
     def test_can_get_by_category(self):
-        self.image.save_image()
+        self.setUpClass()
         images = Image.get_by_category('Exuberance')
         self.assertTrue(len(images)>0)
 
@@ -54,13 +61,11 @@ class ImageTestClass(TestCase):
 
 
     def test_can_update_image(self):
-        self.image.save_image()
         image = Image.objects.filter(name = "Coffee").update(name = "Caffeine")
         self.assertTrue(image,"Caffeine")
 
 
     def test_can_delete_images(self):
-        self.image.save_image()
         self.image.delete_image()
         images = Image.fetch_all()
-        self.assertTrue(len(images)==0)
+        self.assertEqual( len(images) , 0 )

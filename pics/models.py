@@ -1,9 +1,12 @@
 from django.db import models
 
-# Create your models here.
+# Application Models 
 class Location(models.Model):
     name = models.CharField(max_length = 30)
 
+    '''
+    the __str__ function defines how our class instances gonna appear on our backend .
+    '''
     def __str__(self):
         return self.name
 
@@ -36,7 +39,7 @@ class Image(models.Model):
     category = models.ForeignKey(Category)
     location = models.ForeignKey(Location)
 
-    def __strt__(self):
+    def __str__(self):
         return self.name
 
     def save_image(self):
