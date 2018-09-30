@@ -17,6 +17,10 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name_plural = "Categories"
+
 
     @classmethod
     def fetch_categories(cls):
@@ -32,6 +36,8 @@ class Image(models.Model):
     category = models.ForeignKey(Category)
     location = models.ForeignKey(Location)
 
+    def __strt__(self):
+        return self.name
 
     def save_image(self):
         self.save()
@@ -45,8 +51,14 @@ class Image(models.Model):
         return images
 
     @classmethod
+    def get_by_category(cls , cat):
+        images = cls.objects.filter(category__name__startswith = cat)
+        return images
+
+    @classmethod
     def search_image(cls,search_term):
         images = cls.objects.filter(description__icontains = search_term)
+        # also = cls.objects.filter(category__name__startswith = search_term)
         return images
     
     @classmethod
@@ -54,10 +66,6 @@ class Image(models.Model):
         image = cls.objects.filter(id=id)
         return image
     
-    @classmethod
-    def get_by_category(cls , cat):
-        images = cls.objects.filter(category__name__startswith = cat)
-        return images
 
     @classmethod
     def get_by_location(cls , location):
