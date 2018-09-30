@@ -47,7 +47,8 @@ def search_images(request):
     if 'images' in request.GET and request.GET['images']:
         search_term = request.GET.get("images")
         images = Image.search_image(search_term)
-        status = f"Displaying images related to {search_term}"
+        # status = f"Displaying images related to {search_term} "
+        status = search_term
         data = {
             "status":status , 
             "images":images ,
