@@ -75,11 +75,9 @@ In the same terminal type:
 Open your browser on `http://localhost:8000/`, `http://127.0.0.1:8000`
 
 ## Technologies used
-    - Python 3.7
-    - Django 1.11
-    - HTML
-    - Bootstrap 4 
-    - CSS 
+    - Python 3.6 / Django 1.11
+    - HTML5
+    - CSS / Bootstrap 4 / Bootswatch
     - Heroku
     - Postgresql
 

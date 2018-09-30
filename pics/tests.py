@@ -35,27 +35,23 @@ class ImageTestClass(TestCase):
 
 
     def test_can_save_image(self):
+        self.setUp()
         self.setUpClass()
-        images = Image.fetch_all()
-        self.assertTrue(len(images)>0)
+        self.assertTrue(len(Image.fetch_all())>0)
 
     def test_can_search(self):
-        self.setUpClass()
         image = Image.search_image('coffee')
         self.assertTrue(len(image)>0)
     
     def test_can_fetch_all_images(self):
-        self.setUpClass()
         images = Image.fetch_all()
         self.assertTrue(len(images)==1)
 
     def test_can_get_by_category(self):
-        self.setUpClass()
         images = Image.get_by_category('Exuberance')
         self.assertTrue(len(images)>0)
 
     def test_can_get_by_location(self):
-        self.image.save_image()
         images = Image.get_by_location('Shengzhen')
         self.assertTrue(len(images)>0)
 
@@ -66,6 +62,5 @@ class ImageTestClass(TestCase):
 
 
     def test_can_delete_images(self):
-        self.image.delete_image()
-        images = Image.fetch_all()
-        self.assertEqual( len(images) , 0 )
+        self.tearDown()
+        self.assertEqual( len(Image.fetch_all()) , 0 )
