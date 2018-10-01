@@ -1,5 +1,5 @@
 function copylink(value) {
-    console.log(' Copied ')
+    console.log(' Copied to clipboad !')
     function handler(event){
         event.clipboardData.setData('text/plain', value);
         event.preventDefault();

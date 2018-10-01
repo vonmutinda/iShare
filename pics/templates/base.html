@@ -11,18 +11,27 @@
     <title> </title>
     {% endif %}
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
 
     {% block styles %}
-        <link rel="stylesheet" href="{% static 'css/bootswatch.css' %}">
-        <link href="https://fonts.googleapis.com/css?family=Charmonman|Pangolin" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <style>
-                body{
-                    font-family: 'Pangolin', cursive;
-                    font-size: 18px;
-                }
-        </style>
+    <link rel="stylesheet" href="{% static 'css/bootswatch.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Charmonman|Pangolin" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: 'Pangolin', cursive;
+            font-size: 18px;
+        }
+
+        .zoom {
+            transition: transform .5s;
+            /* Animation */
+        }
+
+        .zoom:hover {
+            transform: scale(1.5);
+            /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
+    </style>
     {% endblock %}
 
 </head>
@@ -35,8 +44,8 @@
     {% endblock %}
 
     {% block scripts %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" ></script>
-        <script src = "{% static 'js/main.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
     {% bootstrap_javascript %}
     {% endblock %}
 </body>
